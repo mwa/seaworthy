@@ -17,7 +17,14 @@ _global_script_class_icons={
 
 config/name="Seaworthy"
 config/description="A ship sailing game."
+run/main_scene="res://scenes/Sea.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=500
+window/size/height=800
+window/size/resizable=false
 
 [rendering]
 
