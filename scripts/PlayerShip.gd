@@ -25,3 +25,8 @@ func get_input():
 	if Input.is_action_pressed("ui_right"):
 		# move right
 		velocity += transform.x * speed
+
+
+# handle collision with fish
+func on_fish_touched():
+	pass
