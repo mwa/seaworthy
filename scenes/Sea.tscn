@@ -1,18 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/Sea.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/water.png" type="Texture" id=2]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scenes/Fish.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/HUD.gd" type="Script" id=3]
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/Fish.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
 outline_size = 1
-font_data = ExtResource( 3 )
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 100 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 100 )
@@ -30,12 +28,13 @@ __meta__ = {
 }
 
 [node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
 margin_left = 366.0
-margin_top = 746.0
+margin_top = 752.0
 margin_right = 491.0
-margin_bottom = 791.0
+margin_bottom = 797.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.839216, 0.533333, 0.101961, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -44,20 +43,20 @@ align = 2
 
 [node name="Fishes" type="Node2D" parent="."]
 
-[node name="Fish" parent="Fishes" instance=ExtResource( 4 )]
+[node name="Fish" parent="Fishes" instance=ExtResource( 5 )]
 position = Vector2( 250, 50 )
 
-[node name="PlayerShip" parent="." instance=ExtResource( 5 )]
+[node name="PlayerShip" parent="." instance=ExtResource( 6 )]
 position = Vector2( 250, 700 )
 
 [node name="SideBorders" type="StaticBody2D" parent="."]
 position = Vector2( 0, 700 )
 
 [node name="BorderLeft" type="CollisionShape2D" parent="SideBorders"]
-shape = SubResource( 1 )
 
 [node name="BorderRight" type="CollisionShape2D" parent="SideBorders"]
 position = Vector2( 500, 0 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
+[connection signal="change_score" from="PlayerShip" to="." method="_on_PlayerShip_change_score"]
