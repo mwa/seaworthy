@@ -30,3 +30,6 @@ func get_input():
 # handle collision with fish
 func on_fish_touched():
 	pass
+
+func on_bad_fish_caught():
+	pass
