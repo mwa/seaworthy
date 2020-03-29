@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/img/water.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Fish.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Sea.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 100 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 20, 100 )
 
 [node name="Sea" type="Node2D"]
 script = ExtResource( 4 )
@@ -24,5 +30,15 @@ position = Vector2( 250, 50 )
 
 [node name="PlayerShip" parent="." instance=ExtResource( 1 )]
 position = Vector2( 250, 700 )
+
+[node name="SideBorders" type="StaticBody2D" parent="."]
+position = Vector2( 0, 700 )
+
+[node name="BorderLeft" type="CollisionShape2D" parent="SideBorders"]
+shape = SubResource( 1 )
+
+[node name="BorderRight" type="CollisionShape2D" parent="SideBorders"]
+position = Vector2( 500, 0 )
+shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
