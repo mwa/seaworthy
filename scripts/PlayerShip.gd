@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal change_score(points)
 
 var speed = 200  # speed in pixels/s
 var velocity = Vector2.ZERO
@@ -30,6 +31,8 @@ func get_input():
 # handle collision with fish
 func on_fish_touched():
 	$PickupSound.play()
+	emit_signal("change_score", 1)
 
 func on_bad_fish_caught():
 	$HitSound.play()
+	emit_signal("change_score", -10)
