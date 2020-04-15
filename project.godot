@@ -16,9 +16,9 @@ _global_script_class_icons={
 [application]
 
 config/name="Seaworthy"
+config/description="A ship sailing game."
 run/main_scene="res://scenes/Sea.tscn"
 config/icon="res://icon.png"
-config/description="A ship sailing game."
 
 [display]
 
