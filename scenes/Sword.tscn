@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Collectible.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/img/sword_silver.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Sword.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 40.0
+
+[node name="Collectible" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+rotation = 0.523599
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+rotation = 0.523599
+shape = SubResource( 1 )

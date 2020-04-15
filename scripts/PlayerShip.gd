@@ -1,9 +1,13 @@
 extends KinematicBody2D
 
 signal change_score(points)
+signal update_swords(num_swords)
+
 
 var speed = 200  # speed in pixels/s
 var velocity = Vector2.ZERO
+
+var swords = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,11 +32,19 @@ func get_input():
 		velocity += transform.x * speed
 
 
-# handle collision with fish
+# handle collisions with collectibles
+
 func on_fish_touched():
 	$PickupSound.play()
 	emit_signal("change_score", 1)
 
+
 func on_bad_fish_caught():
 	$HitSound.play()
 	emit_signal("change_score", -10)
+
+
+func on_sword_touched():
+	$PickupSound.play()
+	swords += 1
+	emit_signal("update_swords", swords)
