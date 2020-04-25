@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Sea.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/water.png" type="Texture" id=2]
@@ -7,21 +7,23 @@
 [ext_resource path="res://scenes/Fish.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/PlayerShip.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/img/sword_silver.png" type="Texture" id=7]
+[ext_resource path="res://scenes/BadFish.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Sword.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
 outline_size = 1
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 35
 outline_size = 1
 font_data = ExtResource( 4 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20, 100 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 20, 100 )
 
 [node name="Sea" type="Node2D"]
@@ -62,7 +64,7 @@ margin_left = 15.0
 margin_top = -0.975464
 margin_right = 60.2465
 margin_bottom = 44.0245
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.839216, 0.533333, 0.101961, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "12"
@@ -75,6 +77,12 @@ __meta__ = {
 [node name="Fish" parent="Collectibles" instance=ExtResource( 5 )]
 position = Vector2( 250, 50 )
 
+[node name="BadFish" parent="Collectibles" instance=ExtResource( 8 )]
+visible = false
+
+[node name="Sword" parent="Collectibles" instance=ExtResource( 9 )]
+visible = false
+
 [node name="PlayerShip" parent="." instance=ExtResource( 6 )]
 position = Vector2( 250, 700 )
 
@@ -82,12 +90,12 @@ position = Vector2( 250, 700 )
 position = Vector2( 0, 700 )
 
 [node name="BorderLeft" type="CollisionShape2D" parent="SideBorders"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="BorderRight" type="CollisionShape2D" parent="SideBorders"]
 position = Vector2( 500, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
-[connection signal="change_score" from="PlayerShip" to="." method="_on_PlayerShip_change_score"]
+[connection signal="update_score" from="PlayerShip" to="." method="_on_PlayerShip_update_score"]
 [connection signal="update_swords" from="PlayerShip" to="." method="_on_PlayerShip_update_swords"]

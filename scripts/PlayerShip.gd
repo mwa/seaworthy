@@ -1,12 +1,13 @@
 extends KinematicBody2D
 
-signal change_score(points)
+signal update_score(points)
 signal update_swords(num_swords)
 
 
 var speed = 200  # speed in pixels/s
 var velocity = Vector2.ZERO
 
+var score = 0
 var swords = 0
 
 
@@ -36,12 +37,14 @@ func get_input():
 
 func on_fish_touched():
 	$PickupSound.play()
-	emit_signal("change_score", 1)
+	score += 1
+	emit_signal("update_score", score)
 
 
 func on_bad_fish_caught():
 	$HitSound.play()
-	emit_signal("change_score", -10)
+	score -= 10
+	emit_signal("update_score", score)
 
 
 func on_sword_touched():

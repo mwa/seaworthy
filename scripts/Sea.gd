@@ -1,8 +1,5 @@
 extends Node2D
 
-var score
-
-
 var Fish = load("res://scenes/Fish.tscn")
 var BadFish = load("res://scenes/BadFish.tscn")
 var Sword = load("res://scenes/Sword.tscn")
@@ -15,16 +12,14 @@ func _ready():
 
 
 func new_game():
-	score = 0
-	_on_PlayerShip_change_score(0)
+	_on_PlayerShip_update_score(0)
 	_on_PlayerShip_update_swords(0)
 	# spawn a fish every timeout
 	$Timer.connect("timeout", self, "spawn_fish")
 	$Timer.start()
 
 
-func _on_PlayerShip_change_score(points):
-	score += points
+func _on_PlayerShip_update_score(score):
 	$HUD.update_score(score)
 
 

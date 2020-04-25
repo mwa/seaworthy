@@ -2,7 +2,6 @@ extends Area2D
 
 # NOTE: base scene and script for collectible items, add CollisionShape2D in inherited scenes
 
-
 var speed = 120  # speed in pixels/s
 var velocity = Vector2(0, speed)
 
