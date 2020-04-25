@@ -55,6 +55,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GameOverLabel" type="Label" parent="HUD"]
+visible = false
+margin_left = 80.0
+margin_top = 289.0
+margin_right = 418.0
+margin_bottom = 344.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.839216, 0.533333, 0.101961, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+text = "GAME OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Sword" type="Sprite" parent="HUD"]
 position = Vector2( 20, 752.951 )
 texture = ExtResource( 7 )
@@ -97,5 +112,6 @@ position = Vector2( 500, 0 )
 shape = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
+[connection signal="game_over" from="PlayerShip" to="." method="_on_PlayerShip_game_over"]
 [connection signal="update_score" from="PlayerShip" to="." method="_on_PlayerShip_update_score"]
 [connection signal="update_swords" from="PlayerShip" to="." method="_on_PlayerShip_update_swords"]

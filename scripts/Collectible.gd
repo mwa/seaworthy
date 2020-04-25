@@ -24,7 +24,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# remove after bottom has been reached
 	if position.y > 850:
 		remove()
@@ -52,7 +52,7 @@ func _on_Collectible_body_entered(body):
 
 
 # collision handler
-func on_body_entered(body):
+func on_body_entered(_body):
 	# implement in subclasses
 	pass
 	remove()

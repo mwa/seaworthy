@@ -15,7 +15,7 @@ func new_game():
 	_on_PlayerShip_update_score(0)
 	_on_PlayerShip_update_swords(0)
 	# spawn a fish every timeout
-	$Timer.connect("timeout", self, "spawn_fish")
+	var _err = $Timer.connect("timeout", self, "spawn_fish")
 	$Timer.start()
 
 
@@ -45,3 +45,12 @@ func spawn_fish():
 	collectible.position = Vector2(rand_range(50, 450), -50)
 	# add fish to Collectibles container node
 	$Collectibles.add_child(collectible)
+
+
+func _on_PlayerShip_game_over(coll_item):
+	$HUD/GameOverLabel.visible = true
+	$Timer.stop()
+	for item in $Collectibles.get_children():
+		if item != coll_item:
+			$Collectibles.remove_child(item)
+			item.queue_free()

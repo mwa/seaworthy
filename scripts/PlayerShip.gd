@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 signal update_score(points)
 signal update_swords(num_swords)
+signal game_over(item)
 
 
 var speed = 200  # speed in pixels/s
@@ -12,12 +13,12 @@ var swords = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	velocity = move_and_slide(velocity)
 
@@ -41,10 +42,13 @@ func on_fish_touched():
 	emit_signal("update_score", score)
 
 
-func on_bad_fish_caught():
+func on_bad_fish_caught(item):
 	$HitSound.play()
-	score -= 10
-	emit_signal("update_score", score)
+	if swords >= 3:
+		swords -= 3
+		emit_signal("update_swords", swords)
+	else:
+		emit_signal("game_over", item)
 
 
 func on_sword_touched():

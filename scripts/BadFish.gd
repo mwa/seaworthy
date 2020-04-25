@@ -4,12 +4,12 @@ extends "res://scripts/Collectible.gd"
 
 
 func _ready():
-	var tween_duration = 0.3
+	tween_duration = 0.3
 
 
 # collision handler
 func on_body_entered(body):
 	if body.has_method('on_bad_fish_caught'):
 		# handle collision
-		body.on_bad_fish_caught()
+		body.on_bad_fish_caught(self)
 		animate_remove()
