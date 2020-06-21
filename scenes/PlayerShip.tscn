@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://assets/img/ship.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio/pickup.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/audio/hit.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/pickup_sword.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/gameover.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -26,5 +28,12 @@ shape = SubResource( 1 )
 [node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
+[node name="PickupSoundSword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = 5.0

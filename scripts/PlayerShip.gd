@@ -48,10 +48,12 @@ func on_bad_fish_caught(item):
 		swords -= 3
 		emit_signal("update_swords", swords)
 	else:
+		$HitSound.connect("finished", $GameOverSound, "play")
 		emit_signal("game_over", item)
 
 
+
 func on_sword_touched():
-	$PickupSound.play()
+	$PickupSoundSword.play()
 	swords += 1
 	emit_signal("update_swords", swords)
